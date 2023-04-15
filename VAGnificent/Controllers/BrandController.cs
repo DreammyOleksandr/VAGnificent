@@ -33,4 +33,19 @@ public class BrandController : Controller
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
+    
+    public IActionResult Edit(int? id)
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Edit(Brand obj)
+    {
+        _db.Update(obj);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
+    
+    
 }
