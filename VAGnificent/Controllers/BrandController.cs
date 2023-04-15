@@ -17,8 +17,8 @@ public class BrandController : Controller
 
     public IActionResult Index()
     {
-        IEnumerable<Brand> brandsList = _db.Brands;
-        return View();
+        List<Brand> brandsList = _db.Brands.ToList();
+        return View(brandsList);
     }
 
     public IActionResult Create()
@@ -43,6 +43,19 @@ public class BrandController : Controller
     public IActionResult Edit(Brand obj)
     {
         _db.Update(obj);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
+    
+    public IActionResult Delete(int? id)
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Delete(Brand obj)
+    {
+        _db.Remove(obj);
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
