@@ -1,5 +1,20 @@
-﻿namespace VAGnificent.DataAccess;
+﻿using Microsoft.EntityFrameworkCore;
+using VAGnificent.Models;
 
-public class Class1
+namespace VAGnificent.DataAccess;
+
+public class ApplicationDbContext : DbContext
 {
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<Brand>().HasData(
+            new Brand { Id = 1, BrandName = "Lamborghini"});
+    }
+    public DbSet<Brand> Brands { get; set; }
 }
