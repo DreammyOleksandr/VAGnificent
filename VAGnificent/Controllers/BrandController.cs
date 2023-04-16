@@ -61,7 +61,17 @@ public class BrandController : Controller
 
     public IActionResult Delete(int? id)
     {
-        return View();
+        Brand? brand = _db.Brands.Find(id);
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
+
+        if (brand == null)
+        {
+            return NotFound();
+        }
+        return View(brand);
     }
 
     [HttpPost]
