@@ -18,8 +18,9 @@ public class BrandController : Controller
     public IActionResult Index()
     {
         List<Brand> brandsList = _db.Brands.ToList();
-        return View(brandsList);
+        return View();
     }
+
 
     public IActionResult Create()
     {
@@ -33,9 +34,13 @@ public class BrandController : Controller
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
-    
+
     public IActionResult Edit(int? id)
     {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
         return View();
     }
 
@@ -46,7 +51,7 @@ public class BrandController : Controller
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
-    
+
     public IActionResult Delete(int? id)
     {
         return View();
@@ -59,6 +64,15 @@ public class BrandController : Controller
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
-    
-    
+
+    #region API Calls
+
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        List<Brand> brandsList = _db.Brands.ToList();
+        return Json(new { data = brandsList });
+    }
+
+    #endregion
 }
