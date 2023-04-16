@@ -14,7 +14,7 @@ public class ApplicationDbContext : DbContext
         base.OnModelCreating(modelBuilder);
         
         modelBuilder.Entity<Brand>().HasData(
-            new Brand { Id = 1, BrandName = "Lamborghini"});
+            new Brand { Id = 1, BrandName = "Lamborghini", CEO = "Stefan Vinkelman"});
     }
     public DbSet<Brand> Brands { get; set; }
 }
