@@ -37,11 +37,18 @@ public class BrandController : Controller
 
     public IActionResult Edit(int? id)
     {
+        Brand? brand = _db.Brands.Find(id);
+        
         if (id == null || id == 0)
         {
             return NotFound();
         }
-        return View();
+
+        if (brand == null)
+        {
+            return NotFound();
+        }
+        return View(brand);
     }
 
     [HttpPost]
