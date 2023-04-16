@@ -18,7 +18,7 @@ public class BrandController : Controller
     public IActionResult Index()
     {
         List<Brand> brandsList = _db.Brands.ToList();
-        return View();
+        return View(brandsList);
     }
 
 
