@@ -21,11 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
-      <Folder Include="Models" />
-    </ItemGroup>
-
-    <ItemGroup>
       <_ContentIncludedByDefault Remove="Views\Brand\Create.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Brand\Delete.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Brand\Edit.cshtml" />
