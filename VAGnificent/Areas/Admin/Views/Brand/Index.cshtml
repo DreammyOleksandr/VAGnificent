@@ -6,14 +6,14 @@
             <h2>VAG Brands</h2>
         </div>
         <div class="text-end col-6">
-            <a class="btn btn-primary" asp-controller="Brand" asp-action="Create">--Create Brand--</a>
+            <a class="btn btn-primary"asp-area="Admin" asp-controller="Brand" asp-action="Create">--Create Brand--</a>
         </div>
     </div>
     <div class="border border-1 p-3">
-        <table id="tblData" class="table">
+        <table class="table" id="brandsData">
             <thead>
-            <th>Brand Name</th>
-            <th>CEO</th>
+            <th></th>
+            <th></th>
             <th></th>
             </thead>
         </table>
@@ -21,7 +21,3 @@
 </div>
 
 
-@section Scripts
-{
-    <script src="js/brand.js"></script>
-}

@@ -4,8 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using VAGnificent.DataAccess;
 using VAGnificent.Models;
 
-namespace VAGnificent.Controllers;
+namespace VAGnificent.Areas.Admin.Controllers;
 
+[Area("Admin")]
 public class BrandController : Controller
 {
     private readonly ApplicationDbContext _db;

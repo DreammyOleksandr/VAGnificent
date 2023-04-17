@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using VAGnificent.Models;
 
-namespace VAGnificent.Controllers;
+namespace VAGnificent.Areas.Customer.Controllers;
 
+[Area("Customer")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

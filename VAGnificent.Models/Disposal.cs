@@ -11,7 +11,7 @@ public class Disposal
     [Required, MaxLength(50, ErrorMessage = "Brand name can not contain 50 symbols")]
 
     public int BrandId { get; set; }
-    [ForeignKey("BrandId")]
+    [ForeignKey("BrandId"), ValidateNever]
     public Brand Brand { get; set; }
     [Required]
     public string? Model { get; set; }
@@ -21,8 +21,8 @@ public class Disposal
     public string? Colour { get; set; }
     [Required]
     public string? FuelType { get; set; }
-    public string? Weight { get; set; }
-    public string? HorsePower { get; set; }
+    public int Weight { get; set; }
+    public int HorsePower { get; set; }
     public double EngineCapacity { get; set; }
     [Required]
     public string? TransmisionType { get; set; }
@@ -35,5 +35,5 @@ public class Disposal
     [Required]
     public bool Accidents { get; set; }
     [ValidateNever]
-    public string ImageUrl { get; set; }
+    public string? ImageUrl { get; set; }
 }

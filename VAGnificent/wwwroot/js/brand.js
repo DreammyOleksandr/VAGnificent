@@ -3,8 +3,8 @@ $(document).ready(function () {
 });
 
 function loadDataTable() {
-    dataTable = $('#tblData').DataTable({
-        "ajax": {"url": 'Brand/GetAll'},
+    dataTable = $('#brandsData').DataTable({
+        "ajax": {"url": '/Admin/Brand/Index/'},
         "columns": [
             {data: "brandName", "width": "40%"},
             {data: "ceo", "width": "40%"},

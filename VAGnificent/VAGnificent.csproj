@@ -13,6 +13,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.6" />
     </ItemGroup>
 
     <ItemGroup>
@@ -20,7 +21,29 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Controllers" />
       <Folder Include="Models" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Brand\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Brand\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Brand\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Brand\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Brand\Shared\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Brand\Shared\_Layout.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Brand\Shared\_ValidationScriptsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Home\Privacy.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Admin\Views\Brand\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Brand\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Brand\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Brand\Index.cshtml" />
     </ItemGroup>
 
 </Project>
