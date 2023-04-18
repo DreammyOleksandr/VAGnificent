@@ -45,16 +45,23 @@ public class DisposalController : Controller
     }
 
     [HttpPost]
-    public IActionResult Create(DisposalVm obj)
+    public IActionResult Create(DisposalVm disposalVm)
     {
         if (ModelState.IsValid)
         {
-            _db.Add(obj.Disposal);
+            _db.Add(disposalVm.Disposal);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        return View();
+        else
+        {
+            disposalVm.Brands = _db.Brands.ToList().Select(u => new SelectListItem
+            {
+                Text = u.BrandName,
+                Value = u.Id.ToString(),
+            });
+            return View(disposalVm);
+        }
     }
 
     public IActionResult Edit(int? id)

@@ -9,8 +9,12 @@ public class Disposal
 {
     [Key]
     public int Id { get; set; }
-    [Required, ValidateNever] public int BrandId { get; set; }
-    [ForeignKey("BrandId"), ValidateNever] public Brand Brand { get; set; }
+    
+    [ValidateNever]
+    public int BrandId { get; set; }
+    [ForeignKey("BrandId")]
+    [ValidateNever]
+    public Brand? Brand { get; set; }
 
     [Required] public string? Model { get; set; }
     [Required] public string? BrandCountry { get; set; }

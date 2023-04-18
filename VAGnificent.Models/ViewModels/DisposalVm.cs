@@ -7,6 +7,7 @@ namespace VAGnificent.Models.ViewModels;
 public class DisposalVm
 {
     public Disposal Disposal { get; set; }
+    
     [ValidateNever]
     public IEnumerable<SelectListItem> Brands { get; set; }
 }
