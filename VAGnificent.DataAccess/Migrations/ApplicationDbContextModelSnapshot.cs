@@ -17,12 +17,12 @@ namespace VAGnificent.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0-preview.2.23128.3")
+                .HasAnnotation("ProductVersion", "8.0.0-preview.3.23174.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("VAGnificent.Models.Brand", b =>
+            modelBuilder.Entity("VAGnificent.Models.Models.Brand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace VAGnificent.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("VAGnificent.Models.Disposal", b =>
+            modelBuilder.Entity("VAGnificent.Models.Models.Disposal", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,19 +67,17 @@ namespace VAGnificent.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BrandId")
-                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.Property<string>("Colour")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("DollarsPrice")
-                        .HasMaxLength(999999)
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("DollarsPrice")
+                        .HasColumnType("int");
 
-                    b.Property<double>("EngineCapacity")
-                        .HasColumnType("float");
+                    b.Property<int>("EngineCapacity")
+                        .HasColumnType("int");
 
                     b.Property<string>("FuelType")
                         .IsRequired()
@@ -99,8 +97,8 @@ namespace VAGnificent.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("TravelledDistance")
-                        .HasColumnType("float");
+                    b.Property<int>("TravelledDistance")
+                        .HasColumnType("int");
 
                     b.Property<int>("Weight")
                         .HasColumnType("int");
@@ -113,30 +111,11 @@ namespace VAGnificent.DataAccess.Migrations
                     b.HasIndex("BrandId");
 
                     b.ToTable("Disposals");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Accidents = true,
-                            BrandCountry = "Germany",
-                            BrandId = 5,
-                            Colour = "White",
-                            DollarsPrice = 100000m,
-                            EngineCapacity = 3000.0,
-                            FuelType = "Gazoline",
-                            HorsePower = 420,
-                            Model = "911 922 Turbo",
-                            TransmisionType = "Robo",
-                            TravelledDistance = 0.0,
-                            Weight = 1300,
-                            Year = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2021)
-                        });
                 });
 
-            modelBuilder.Entity("VAGnificent.Models.Disposal", b =>
+            modelBuilder.Entity("VAGnificent.Models.Models.Disposal", b =>
                 {
-                    b.HasOne("VAGnificent.Models.Brand", "Brand")
+                    b.HasOne("VAGnificent.Models.Models.Brand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)

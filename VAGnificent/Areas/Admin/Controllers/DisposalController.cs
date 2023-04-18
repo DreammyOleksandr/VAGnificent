@@ -41,7 +41,7 @@ public class DisposalController : Controller
                 Value = u.Id.ToString(),
             })
         };
-        return View();
+        return View(disposalVm);
     }
 
     [HttpPost]
