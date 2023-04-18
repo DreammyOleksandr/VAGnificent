@@ -13,14 +13,76 @@
             <div class="border p-3">
                 @* <div asp-validation-summary="ModelOnly"></div> *@
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="BrandName" class="form-control border-0 shadow">
-                    <label asp-for="BrandName" class="ms-2"></label>
-                    <span asp-validation-for="BrandName" class="text-danger"></span>
+                    <select asp-for="BrandId" asp-items="@Model.Brands" class="form-select border-0 shadow">
+                        <option disabled selected>--Select Category--</option>
+                    </select>
+                    <label asp-for="BrandId" class="ms-2"></label>
+                    <span asp-validation-for="BrandId" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="CEO" class="form-control border-0 shadow">
-                    <label asp-for="CEO" class="ms-2"></label>
-                    <span asp-validation-for="CEO" class="text-danger"></span>
+                    <input asp-for="Model" class="form-control border-0 shadow">
+                    <label asp-for="Model" class="ms-2"></label>
+                    <span asp-validation-for="Model" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="BrandCountry" class="form-control border-0 shadow">
+                    <label asp-for="BrandCountry" class="ms-2"></label>
+                    <span asp-validation-for="BrandCountry" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Colour" class="form-control border-0 shadow">
+                    <label asp-for="Colour" class="ms-2"></label>
+                    <span asp-validation-for="Colour" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="FuelType" class="form-control border-0 shadow">
+                    <label asp-for="FuelType" class="ms-2"></label>
+                    <span asp-validation-for="FuelType" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Weight" class="form-control border-0 shadow">
+                    <label asp-for="Weight" class="ms-2"></label>
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="HorsePower" class="form-control border-0 shadow">
+                    <label asp-for="HorsePower" class="ms-2"></label>
+                    <span asp-validation-for="HorsePower" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="EngineCapacity" class="form-control border-0 shadow">
+                    <label asp-for="EngineCapacity" class="ms-2"></label>
+                    <span asp-validation-for="EngineCapacity" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="TransmisionType" class="form-control border-0 shadow">
+                    <label asp-for="TransmisionType" class="ms-2"></label>
+                    <span asp-validation-for="TransmisionType" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="TravelledDistance" class="form-control border-0 shadow">
+                    <label asp-for="TravelledDistance" class="ms-2"></label>
+                    <span asp-validation-for="TravelledDistance" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Year" class="form-control border-0 shadow">
+                    <label asp-for="Year" class="ms-2"></label>
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="DollarsPrice" class="form-control border-0 shadow">
+                    <label asp-for="DollarsPrice" class="ms-2"></label>
+                    <span asp-validation-for="DollarsPrice" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Accidents" class="form-control border-0 shadow">
+                    <label asp-for="Accidents" class="ms-2"></label>
+                    <span asp-validation-for="Accidents" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Year.Year" class="form-control border-0 shadow">
+                    <label asp-for="Year.Year" class="ms-2"></label>
+                    <span asp-validation-for="Year.Year" class="text-danger"></span>
                 </div>
                 <div class="row pt-2 mt-3">
                     <div class="col-6 col-md-3">

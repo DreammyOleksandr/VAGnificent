@@ -31,15 +31,20 @@ public class DisposalController : Controller
     [HttpPost]
     public IActionResult Create(Disposal obj)
     {
-        _db.Add(obj);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+        if (ModelState.IsValid)
+        {
+            _db.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        return View();
     }
 
     public IActionResult Edit(int? id)
     {
         Disposal? Disposal = _db.Disposals.Find(id);
-        
+
         if (id == null || id == 0)
         {
             return NotFound();
@@ -49,15 +54,21 @@ public class DisposalController : Controller
         {
             return NotFound();
         }
+
         return View(Disposal);
     }
 
     [HttpPost]
     public IActionResult Edit(Disposal obj)
     {
-        _db.Update(obj);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+        if (ModelState.IsValid)
+        {
+            _db.Update(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        return View();
     }
 
     public IActionResult Delete(int? id)
@@ -72,6 +83,7 @@ public class DisposalController : Controller
         {
             return NotFound();
         }
+
         return View(Disposal);
     }
 
