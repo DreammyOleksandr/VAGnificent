@@ -18,8 +18,13 @@ public class DisposalController : Controller
 
     public IActionResult Index()
     {
-        List<Disposal> DisposalsList = _db.Disposals.ToList();
-        return View(DisposalsList);
+        if (ModelState.IsValid)
+        {
+            List<Disposal> DisposalsList = _db.Disposals.ToList();
+            return View(DisposalsList);
+        }
+
+        return View();
     }
 
 
