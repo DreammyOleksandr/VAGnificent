@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VAGnificent.DataAccess;
 using VAGnificent.Models;
@@ -21,6 +22,11 @@ public class DisposalController : Controller
         if (ModelState.IsValid)
         {
             List<Disposal> DisposalsList = _db.Disposals.ToList();
+            IEnumerable<SelectListItem> BrandList = _db.Brands.ToList().Select(u=> new SelectListItem
+            {
+                Text = u.BrandName,
+                Value = u.Id.ToString(),
+            });
             return View(DisposalsList);
         }
 

@@ -18,7 +18,7 @@ public class Disposal
     [Required] public string? FuelType { get; set; }
     public int Weight { get; set; }
     public int HorsePower { get; set; }
-    public int EngineCapacity { get; set; }
+    public decimal EngineCapacity { get; set; }
     [Required] public string? TransmisionType { get; set; }
     [Required] public int TravelledDistance { get; set; }
     [Required] public DateTime Year { get; set; }
