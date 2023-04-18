@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VAGnificent.DataAccess;
-using VAGnificent.Models;
+using VAGnificent.Models.Models;
 
 namespace VAGnificent.Areas.Admin.Controllers;
 

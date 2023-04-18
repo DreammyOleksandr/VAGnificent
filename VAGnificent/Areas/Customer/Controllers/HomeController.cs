@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using VAGnificent.Models;
+using VAGnificent.Models.Models;
 
 namespace VAGnificent.Areas.Customer.Controllers;
 

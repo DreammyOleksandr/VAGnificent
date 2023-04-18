@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VAGnificent.Models;
+using VAGnificent.Models.Models;
 
 namespace VAGnificent.DataAccess;
 

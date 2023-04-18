@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VAGnificent.DataAccess;
-using VAGnificent.Models;
+using VAGnificent.Models.Models;
 
 namespace VAGnificent.Areas.Admin.Controllers;
 

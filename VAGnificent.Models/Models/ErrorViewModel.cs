@@ -1,4 +1,4 @@
-namespace VAGnificent.Models;
+namespace VAGnificent.Models.Models;
 
 public class ErrorViewModel
 {
