@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VAGnificent.DataAccess;
 using VAGnificent.Models.Models;
+using VAGnificent.Models.ViewModels;
 
 namespace VAGnificent.Areas.Admin.Controllers;
 
@@ -22,11 +23,6 @@ public class DisposalController : Controller
         if (ModelState.IsValid)
         {
             List<Disposal> DisposalsList = _db.Disposals.ToList();
-            IEnumerable<SelectListItem> BrandList = _db.Brands.ToList().Select(u=> new SelectListItem
-            {
-                Text = u.BrandName,
-                Value = u.Id.ToString(),
-            });
             return View(DisposalsList);
         }
 
@@ -36,15 +32,24 @@ public class DisposalController : Controller
 
     public IActionResult Create()
     {
+        DisposalVm disposalVm = new DisposalVm()
+        {
+            Disposal = new Disposal(),
+            Brands = _db.Brands.ToList().Select(u => new SelectListItem
+            {
+                Text = u.BrandName,
+                Value = u.Id.ToString(),
+            })
+        };
         return View();
     }
 
     [HttpPost]
-    public IActionResult Create(Disposal obj)
+    public IActionResult Create(DisposalVm obj)
     {
         if (ModelState.IsValid)
         {
-            _db.Add(obj);
+            _db.Add(obj.Disposal);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
