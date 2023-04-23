@@ -102,30 +102,6 @@ public class DisposalController : Controller
         return NotFound();
     }
 
-    public IActionResult Delete(int? id)
-    {
-        Disposal? Disposal = _db.Disposals.Find(id);
-        if (id == null || id == 0)
-        {
-            return NotFound();
-        }
-
-        if (Disposal == null)
-        {
-            return NotFound();
-        }
-
-        return View(Disposal);
-    }
-
-    [HttpPost]
-    public IActionResult Delete(Disposal obj)
-    {
-        _db.Remove(obj);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
-    }
-
     #region API Calls
 
     [HttpGet]
@@ -133,6 +109,22 @@ public class DisposalController : Controller
     {
         List<Disposal> DisposalsList = _db.Disposals.Include(u=>u.Brand).ToList();
         return Json(new { data = DisposalsList });
+    }
+
+    [HttpDelete]
+    public IActionResult Delete(int? id)
+    {
+        var disposalToBeDeleted = _db.Disposals.Find(id);
+        if (disposalToBeDeleted == null)
+        {
+            return Json(new { success = false, message = "Error while deleting" });
+        }
+
+        _db.Disposals.Remove(disposalToBeDeleted);
+        _db.SaveChanges();
+        
+        return Json(new{
+    });
     }
 
     #endregion
