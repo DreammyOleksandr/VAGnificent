@@ -1,3 +1,5 @@
+var dataTable
+
 $(document).ready(function () {
     loadDataTable();
 });
@@ -18,7 +20,7 @@ function loadDataTable() {
                 "render": function (data) {
                     return `<div class="w-25 btn-group" role="group">
                 <a href="Disposal/Edit?id=${data}" class="btn btn-primary mx-2">Edit</a>
-                <a href="Disposal/Delete?id=${data}" class="btn btn-danger mx-2">Delete</a>
+                <a OnClick=Delete('Disposal/Delete?id=${data}') class="btn btn-danger mx-2">Delete</a>
                 </div>`
                 },
                 "width":"20%"
@@ -41,7 +43,9 @@ function Delete(url){
             $.ajax({
                 url:url,
                 type: 'DELETE',
-                success(){}
+                success(){
+                    dataTable.ajax.reload();
+                }
             })
         }
     })

@@ -107,11 +107,10 @@ public class DisposalController : Controller
     [HttpGet]
     public IActionResult GetAll()
     {
-        List<Disposal> DisposalsList = _db.Disposals.Include(u=>u.Brand).ToList();
+        List<Disposal> DisposalsList = _db.Disposals.Include(u => u.Brand).ToList();
         return Json(new { data = DisposalsList });
     }
 
-    [HttpDelete]
     public IActionResult Delete(int? id)
     {
         var disposalToBeDeleted = _db.Disposals.Find(id);
@@ -122,9 +121,11 @@ public class DisposalController : Controller
 
         _db.Disposals.Remove(disposalToBeDeleted);
         _db.SaveChanges();
-        
-        return Json(new{
-    });
+
+        return Json(new
+        {
+            success = true, message = "Deleted successfully"
+        });
     }
 
     #endregion
