@@ -123,7 +123,7 @@ public class DisposalController : Controller
     [HttpGet]
     public IActionResult GetAll()
     {
-        List<Disposal> DisposalsList = _db.Disposals.ToList();
+        List<Disposal> DisposalsList = _db.Disposals.Include(u=>u.Brand).ToList();
         return Json(new { data = DisposalsList });
     }
 
