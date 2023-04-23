@@ -66,32 +66,40 @@ public class DisposalController : Controller
 
     public IActionResult Edit(int? id)
     {
-        Disposal? Disposal = _db.Disposals.Find(id);
+        DisposalVm disposalVm = new DisposalVm()
+        {
+            Disposal = _db.Disposals.Find(id),
+            Brands = _db.Brands.ToList().Select(u => new SelectListItem
+            {
+                Text = u.BrandName,
+                Value = u.Id.ToString(),
+            })
+        };
 
         if (id == null || id == 0)
         {
             return NotFound();
         }
 
-        if (Disposal == null)
+        if (disposalVm == null)
         {
             return NotFound();
         }
 
-        return View(Disposal);
+        return View(disposalVm);
     }
 
     [HttpPost]
-    public IActionResult Edit(Disposal obj)
+    public IActionResult Edit(DisposalVm obj)
     {
         if (ModelState.IsValid)
         {
-            _db.Update(obj);
+            _db.Update(obj.Disposal);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        return View();
+        return NotFound();
     }
 
     public IActionResult Delete(int? id)

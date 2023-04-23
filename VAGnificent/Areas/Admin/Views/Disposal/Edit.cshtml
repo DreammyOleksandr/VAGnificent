@@ -1,23 +1,95 @@
-@model Disposal
+@model DisposalVm
 
 <div class="card shadow border-0 mt-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white py-2">Edit</h2>
+                <h2 class="text-white py-2">Update Proposition</h2>
             </div>
         </div>
     </div>
     <div class="card-body p-4">
         <form method="post" class="row">
-            <input asp-for="Id" hidden/>
             <div class="border p-3">
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="@Model.Disposal.Id" hidden>
+                    <select asp-for="@Model.Disposal.BrandId" asp-items="@Model.Brands" class="form-select border-0 shadow">
+                        <option disabled selected>Select Brand</option>
+                    </select>
+                    <label asp-for="@Model.Disposal.BrandId" class="ms-2"></label>
+                    <span asp-validation-for="@Model.Disposal.BrandId" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.Model" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.Model" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.Model" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.BrandCountry" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.BrandCountry" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.BrandCountry" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.Colour" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.Colour" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.Colour" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.FuelType" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.FuelType" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.FuelType" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.Weight" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.Weight" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.Weight" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.HorsePower" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.HorsePower" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.HorsePower" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.EngineCapacity" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.EngineCapacity" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.EngineCapacity" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.TransmisionType" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.TransmisionType" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.TransmisionType" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.TravelledDistance" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.TravelledDistance" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.TravelledDistance" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.Year" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.Year" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.Year" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.DollarsPrice" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.DollarsPrice" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.DollarsPrice" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.Accidents" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.Accidents" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.Accidents" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Disposal.ImageUrl" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.ImageUrl" class="ms-2"></label>
+                    <span asp-validation-for="Disposal.ImageUrl" class="text-danger"></span>
+                </div>
                 <div class="row pt-2 mt-3">
                     <div class="col-6 col-md-3">
                         <button type="submit" class="btn btn-primary form-control">Update</button>
                     </div>
                     <div class="col-6 col-md-3">
-                        <a asp-controller="Brand" asp-action="Index" class="btn btn-outline-secondary form-control">Back to list</a>
+                        <a asp-controller="Disposal" asp-action="Index" class="btn btn-outline-primary form-control">Back to list</a>
                     </div>
                 </div>
             </div>
