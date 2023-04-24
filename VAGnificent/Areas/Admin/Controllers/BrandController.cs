@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VAGnificent.DataAccess;
+using VAGnificent.DataAccess.Repository.IRepository;
 using VAGnificent.Models.Models;
 
 namespace VAGnificent.Areas.Admin.Controllers;
@@ -9,16 +10,16 @@ namespace VAGnificent.Areas.Admin.Controllers;
 [Area("Admin")]
 public class BrandController : Controller
 {
-    private readonly ApplicationDbContext _db;
+    private readonly IBrandRepository _brandRepository;
 
-    public BrandController(ApplicationDbContext db)
+    public BrandController(IBrandRepository brandRepository)
     {
-        _db = db;
+        _brandRepository = brandRepository;
     }
 
     public IActionResult Index()
     {
-        List<Brand> brandsList = _db.Brands.ToList();
+        List<Brand> brandsList = _brandRepository.GetAll().ToList();
         return View(brandsList);
     }
 
@@ -31,14 +32,14 @@ public class BrandController : Controller
     [HttpPost]
     public IActionResult Create(Brand obj)
     {
-        _db.Add(obj);
-        _db.SaveChanges();
+        _brandRepository.Add(obj);
+        _brandRepository.Save();
         return RedirectToAction("Index");
     }
 
     public IActionResult Edit(int? id)
     {
-        Brand? brand = _db.Brands.Find(id);
+        Brand? brand = _brandRepository.Get(_=>_.Id == id);
         
         if (id == null || id == 0)
         {
@@ -55,14 +56,14 @@ public class BrandController : Controller
     [HttpPost]
     public IActionResult Edit(Brand obj)
     {
-        _db.Update(obj);
-        _db.SaveChanges();
+        _brandRepository.Update(obj);
+        _brandRepository.Save();
         return RedirectToAction("Index");
     }
 
     public IActionResult Delete(int? id)
     {
-        Brand? brand = _db.Brands.Find(id);
+        Brand? brand = _brandRepository.Get(_=>_.Id==id);
         if (id == null || id == 0)
         {
             return NotFound();
@@ -78,8 +79,8 @@ public class BrandController : Controller
     [HttpPost]
     public IActionResult Delete(Brand obj)
     {
-        _db.Remove(obj);
-        _db.SaveChanges();
+        _brandRepository.Remove(obj);
+        _brandRepository.Save();
         return RedirectToAction("Index");
     }
 
@@ -88,7 +89,7 @@ public class BrandController : Controller
     [HttpGet]
     public IActionResult GetAll()
     {
-        List<Brand> brandsList = _db.Brands.ToList();
+        List<Brand> brandsList = _brandRepository.GetAll().ToList();
         return Json(new { data = brandsList });
     }
 
