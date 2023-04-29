@@ -51,6 +51,7 @@ public class DisposalController : Controller
         {
             _db.Add(disposalVm.Disposal);
             _db.SaveChanges();
+            TempData["success"] = "Successful creation";
             return RedirectToAction("Index");
         }
         else
@@ -96,6 +97,7 @@ public class DisposalController : Controller
         {
             _db.Update(obj.Disposal);
             _db.SaveChanges();
+            TempData["success"] = "Edited successfully";
             return RedirectToAction("Index");
         }
 

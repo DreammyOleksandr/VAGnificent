@@ -34,6 +34,7 @@ public class BrandController : Controller
     {
         _brandRepository.Add(obj);
         _brandRepository.Save();
+        TempData["success"] = "Successful creation";
         return RedirectToAction("Index");
     }
 
@@ -58,6 +59,7 @@ public class BrandController : Controller
     {
         _brandRepository.Update(obj);
         _brandRepository.Save();
+        TempData["success"] = "Edited successfully";
         return RedirectToAction("Index");
     }
 
@@ -79,6 +81,7 @@ public class BrandController : Controller
     [HttpPost]
     public IActionResult Delete(Brand obj)
     {
+        TempData["success"] = "Successful deletion";
         _brandRepository.Remove(obj);
         _brandRepository.Save();
         return RedirectToAction("Index");
