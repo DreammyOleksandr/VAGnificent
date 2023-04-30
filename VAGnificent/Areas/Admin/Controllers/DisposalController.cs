@@ -1,8 +1,6 @@
-using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using VAGnificent.DataAccess;
+using VAGnificent.DataAccess.Repository.IRepository;
 using VAGnificent.Models.Models;
 using VAGnificent.Models.ViewModels;
 
@@ -11,18 +9,18 @@ namespace VAGnificent.Areas.Admin.Controllers;
 [Area("Admin")]
 public class DisposalController : Controller
 {
-    private readonly ApplicationDbContext _db;
+    private readonly IDisposalRepository _disposalRepository;
 
-    public DisposalController(ApplicationDbContext db)
+    public DisposalController(IDisposalRepository disposalRepository)
     {
-        _db = db;
+        _disposalRepository = disposalRepository;
     }
 
     public IActionResult Index()
     {
         if (ModelState.IsValid)
         {
-            List<Disposal> DisposalsList = _db.Disposals.ToList();
+            List<Disposal> DisposalsList = _disposalRepository.GetAll(includeProperties:"Brand").ToList();
             return View(DisposalsList);
         }
 
@@ -35,10 +33,10 @@ public class DisposalController : Controller
         DisposalVm disposalVm = new DisposalVm()
         {
             Disposal = new Disposal(),
-            Brands = _db.Brands.ToList().Select(u => new SelectListItem
+            Brands = _disposalRepository.GetAll().ToList().Select(u => new SelectListItem
             {
-                Text = u.BrandName,
-                Value = u.Id.ToString(),
+                Text = u.Brand.BrandName,
+                Value = u.BrandId.ToString(),
             })
         };
         return View(disposalVm);
@@ -49,17 +47,17 @@ public class DisposalController : Controller
     {
         if (ModelState.IsValid)
         {
-            _db.Add(disposalVm.Disposal);
-            _db.SaveChanges();
+            _disposalRepository.Add(disposalVm.Disposal);
+            _disposalRepository.Save();
             TempData["success"] = "Successful creation";
             return RedirectToAction("Index");
         }
         else
         {
-            disposalVm.Brands = _db.Brands.ToList().Select(u => new SelectListItem
+            disposalVm.Brands = _disposalRepository.GetAll().ToList().Select(u => new SelectListItem
             {
-                Text = u.BrandName,
-                Value = u.Id.ToString(),
+                Text = u.Brand.BrandName,
+                Value = u.BrandId.ToString(),
             });
             return View(disposalVm);
         }
@@ -69,11 +67,11 @@ public class DisposalController : Controller
     {
         DisposalVm disposalVm = new DisposalVm()
         {
-            Disposal = _db.Disposals.Find(id),
-            Brands = _db.Brands.ToList().Select(u => new SelectListItem
+            Disposal = _disposalRepository.Get(_ => _.Id == id),
+            Brands = _disposalRepository.GetAll().ToList().Select(u => new SelectListItem
             {
-                Text = u.BrandName,
-                Value = u.Id.ToString(),
+                Text = u.Brand.BrandName,
+                Value = u.BrandId.ToString(),
             })
         };
 
@@ -95,8 +93,8 @@ public class DisposalController : Controller
     {
         if (ModelState.IsValid)
         {
-            _db.Update(obj.Disposal);
-            _db.SaveChanges();
+            _disposalRepository.Update(obj.Disposal);
+            _disposalRepository.Save();
             TempData["success"] = "Edited successfully";
             return RedirectToAction("Index");
         }
@@ -109,20 +107,21 @@ public class DisposalController : Controller
     [HttpGet]
     public IActionResult GetAll()
     {
-        List<Disposal> DisposalsList = _db.Disposals.Include(u => u.Brand).ToList();
+        List<Disposal> DisposalsList = _disposalRepository.GetAll(includeProperties:"Brand").ToList();
+        
         return Json(new { data = DisposalsList });
     }
 
     public IActionResult Delete(int? id)
     {
-        var disposalToBeDeleted = _db.Disposals.Find(id);
+        var disposalToBeDeleted = _disposalRepository.Get(_ => _.Id == id);
         if (disposalToBeDeleted == null)
         {
             return Json(new { success = false, message = "Error while deleting" });
         }
 
-        _db.Disposals.Remove(disposalToBeDeleted);
-        _db.SaveChanges();
+        _disposalRepository.Remove(disposalToBeDeleted);
+        _disposalRepository.Save();
 
         return Json(new
         {
