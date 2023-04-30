@@ -10,10 +10,12 @@ namespace VAGnificent.Areas.Admin.Controllers;
 public class DisposalController : Controller
 {
     private readonly IDisposalRepository _disposalRepository;
+    private readonly IBrandRepository _brandRepository;
 
-    public DisposalController(IDisposalRepository disposalRepository)
+    public DisposalController(IDisposalRepository disposalRepository, IBrandRepository brandRepository)
     {
         _disposalRepository = disposalRepository;
+        _brandRepository = brandRepository;
     }
 
     public IActionResult Index()
@@ -33,10 +35,10 @@ public class DisposalController : Controller
         DisposalVm disposalVm = new DisposalVm()
         {
             Disposal = new Disposal(),
-            Brands = _disposalRepository.GetAll().ToList().Select(u => new SelectListItem
+            Brands = _brandRepository.GetAll().ToList().Select(u => new SelectListItem
             {
-                Text = u.Brand.BrandName,
-                Value = u.BrandId.ToString(),
+                Text = u.BrandName,
+                Value = u.Id.ToString(),
             })
         };
         return View(disposalVm);
@@ -54,10 +56,10 @@ public class DisposalController : Controller
         }
         else
         {
-            disposalVm.Brands = _disposalRepository.GetAll().ToList().Select(u => new SelectListItem
+            disposalVm.Brands = _brandRepository.GetAll().ToList().Select(u => new SelectListItem
             {
-                Text = u.Brand.BrandName,
-                Value = u.BrandId.ToString(),
+                Text = u.BrandName,
+                Value = u.Id.ToString()
             });
             return View(disposalVm);
         }
@@ -68,10 +70,10 @@ public class DisposalController : Controller
         DisposalVm disposalVm = new DisposalVm()
         {
             Disposal = _disposalRepository.Get(_ => _.Id == id),
-            Brands = _disposalRepository.GetAll().ToList().Select(u => new SelectListItem
+            Brands = _brandRepository.GetAll().ToList().Select(u => new SelectListItem
             {
-                Text = u.Brand.BrandName,
-                Value = u.BrandId.ToString(),
+                Text = u.BrandName,
+                Value = u.Id.ToString(),
             })
         };
 
