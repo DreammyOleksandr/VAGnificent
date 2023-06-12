@@ -9,7 +9,9 @@
         </div>
     </div>
     <div class="card-body p-4">
-        <form method="post" class="row">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Disposal.Id" hidden/>
+            <input asp-for="Disposal.ImageUrl" hidden/>
             <div class="border p-3">
                 @* <div asp-validation-summary="ModelOnly"></div> *@
                 <div class="form-floating py-2 col-12">
@@ -75,14 +77,13 @@
                     <span asp-validation-for="Disposal.DollarsPrice" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="Disposal.ImageUrl" class="form-control border-0 shadow">
-                    <label asp-for="Disposal.ImageUrl" class="ms-2"></label>
-                    <span asp-validation-for="Disposal.ImageUrl" class="text-danger"></span>
-                </div>
-                <div class="form-floating py-2 col-12">
                     <input type="checkbox" asp-for="Disposal.Accidents" class="form-check-label border-0 shadow">
                     <label asp-for="Disposal.Accidents" class="ms-2"></label>
                     <span asp-validation-for="Disposal.Accidents" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input type="file" name="file" class="form-control border-0 shadow">
+                    <label asp-for="Disposal.ImageUrl" class="ms-2"></label>
                 </div>
                 <div class="row pt-2 mt-3">
                     <div class="col-6 col-md-3">
