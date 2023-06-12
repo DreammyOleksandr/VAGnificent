@@ -11,18 +11,21 @@ public class DisposalController : Controller
 {
     private readonly IDisposalRepository _disposalRepository;
     private readonly IBrandRepository _brandRepository;
+    private readonly IWebHostEnvironment _webHostEnvironment;
 
-    public DisposalController(IDisposalRepository disposalRepository, IBrandRepository brandRepository)
+    public DisposalController(IDisposalRepository disposalRepository, IBrandRepository brandRepository,
+        IWebHostEnvironment webHostEnvironment)
     {
         _disposalRepository = disposalRepository;
         _brandRepository = brandRepository;
+        _webHostEnvironment = webHostEnvironment;
     }
 
     public IActionResult Index()
     {
         if (ModelState.IsValid)
         {
-            List<Disposal> DisposalsList = _disposalRepository.GetAll(includeProperties:"Brand").ToList();
+            List<Disposal> DisposalsList = _disposalRepository.GetAll(includeProperties: "Brand").ToList();
             return View(DisposalsList);
         }
 
@@ -45,8 +48,22 @@ public class DisposalController : Controller
     }
 
     [HttpPost]
-    public IActionResult Create(DisposalVm disposalVm)
+    public IActionResult Create(DisposalVm disposalVm, IFormFile? file)
     {
+        string webRootPath = _webHostEnvironment.WebRootPath;
+        if (file != null)
+        {
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            string disposalsPath = Path.Combine(webRootPath, @"images/disposals");
+
+            using (var fileStream = new FileStream(Path.Combine(disposalsPath, fileName), FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+
+            disposalVm.Disposal.ImageUrl = @"/images/disposals/" + fileName;
+        }
+
         if (ModelState.IsValid)
         {
             _disposalRepository.Add(disposalVm.Disposal);
@@ -91,10 +108,35 @@ public class DisposalController : Controller
     }
 
     [HttpPost]
-    public IActionResult Edit(DisposalVm obj)
+    public IActionResult Edit(DisposalVm obj, IFormFile? file)
     {
+        string webRootPath = _webHostEnvironment.WebRootPath;
+
         if (ModelState.IsValid)
         {
+            if (file != null)
+            {
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                string disposalsPath = Path.Combine(webRootPath, @"images/disposals");
+
+                if (!string.IsNullOrEmpty(obj.Disposal.ImageUrl))
+                {
+                    string oldImagePath = $"{webRootPath}{obj.Disposal.ImageUrl.TrimStart('\\')}";
+
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
+                using (var fileStream = new FileStream(Path.Combine(disposalsPath, fileName), FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+                obj.Disposal.ImageUrl = @"/images/disposals/" + fileName;
+            }
+
             _disposalRepository.Update(obj.Disposal);
             _disposalRepository.Save();
             TempData["success"] = "Edited successfully";
@@ -109,8 +151,8 @@ public class DisposalController : Controller
     [HttpGet]
     public IActionResult GetAll()
     {
-        List<Disposal> DisposalsList = _disposalRepository.GetAll(includeProperties:"Brand").ToList();
-        
+        List<Disposal> DisposalsList = _disposalRepository.GetAll(includeProperties: "Brand").ToList();
+
         return Json(new { data = DisposalsList });
     }
 
@@ -124,7 +166,6 @@ public class DisposalController : Controller
 
         _disposalRepository.Remove(disposalToBeDeleted);
         _disposalRepository.Save();
-
         return Json(new
         {
             success = true, message = "Deleted successfully"

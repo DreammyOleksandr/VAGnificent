@@ -9,10 +9,11 @@
         </div>
     </div>
     <div class="card-body p-4">
-        <form method="post" class="row">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Disposal.Id" hidden>
+            <input asp-for="Disposal.ImageUrl" hidden>
             <div class="border p-3">
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="@Model.Disposal.Id" hidden>
                     <select asp-for="@Model.Disposal.BrandId" asp-items="@Model.Brands" class="form-select border-0 shadow">
                         <option disabled selected>Select Brand</option>
                     </select>
@@ -83,7 +84,7 @@
                     <input type="file" name="file" class="form-control border-0 shadow">
                     <label asp-for="Disposal.ImageUrl" class="ms-2"></label>
                 </div>
-                <div class="form-floating py-2 col-2">
+                <div class="form-floating py-2 col-12">
                     <img src="@Model.Disposal.ImageUrl" width="100%">
                 </div>
                 <div class="row pt-2 mt-3">
