@@ -75,14 +75,16 @@
                     <span asp-validation-for="Disposal.DollarsPrice" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="Disposal.Accidents" class="form-control border-0 shadow">
+                    <input type="checkbox" asp-for="Disposal.Accidents" class="form-check-label border-0 shadow">
                     <label asp-for="Disposal.Accidents" class="ms-2"></label>
                     <span asp-validation-for="Disposal.Accidents" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="Disposal.ImageUrl" class="form-control border-0 shadow">
+                    <input type="file" name="file" class="form-control border-0 shadow">
                     <label asp-for="Disposal.ImageUrl" class="ms-2"></label>
-                    <span asp-validation-for="Disposal.ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-2">
+                    <img src="@Model.Disposal.ImageUrl" width="100%">
                 </div>
                 <div class="row pt-2 mt-3">
                     <div class="col-6 col-md-3">
