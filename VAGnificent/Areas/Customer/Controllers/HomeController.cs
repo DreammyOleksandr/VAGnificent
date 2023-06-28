@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VAGnificent.DataAccess.Repository.IRepository;
 using VAGnificent.Models.Models;
+using VAGnificent.Models.ViewModels;
 
 namespace VAGnificent.Areas.Customer.Controllers;
 
@@ -27,7 +28,20 @@ public class HomeController : Controller
             List<Disposal> DisposalsList = _disposalRepository.GetAll(includeProperties: "Brand").ToList();
             return View(DisposalsList);
         }
+
         return View();
+    }
+
+    public IActionResult ShowCase(int? id)
+    {
+        Disposal disposal = _disposalRepository.Get(_ => _.Id == id, includeProperties: "Brand");
+
+        if (ReferenceEquals(id, null) && id == 0)
+            NotFound();
+        if (ReferenceEquals(disposal, null))
+            NotFound();
+
+        return View(disposal);
     }
 
     public IActionResult Privacy()
