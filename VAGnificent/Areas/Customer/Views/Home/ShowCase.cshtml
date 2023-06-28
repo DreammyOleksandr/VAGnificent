@@ -2,7 +2,7 @@
 
 <div class="card shadow border-0 mt-4">
     <div class="car-photo mt-4">
-        <img src="@Model.ImageUrl" alt="Car Photo" width="400" height="300">
+        <img src="@Model.ImageUrl" alt="Car Photo" width="70%" height="70%" class="rounded-3">
         <h1>@Model.Brand.BrandName</h1>
     </div>
     <div class="details-container px-5">
@@ -10,7 +10,7 @@
             <h2>Car Details</h2>
             <ul style="list-style: none">
                 <li>Model: @Model.Model</li>
-                <li>Year: @Model.Year</li>
+                <li>Year: @Model.Year.Year</li>
                 <li>Colour: @Model.Colour</li>
                 <li>Price: @Model.DollarsPrice$</li>
             </ul>
@@ -27,7 +27,10 @@
             </ul>
         </div>
     </div>
-    <div class="purchase-button mb-4">
-        <button type="button" class="btn btn-primary">Purchase</button>
+    <div class="purchase-button mb-4 px-2">
+        <a type="button" class="btn btn-primary form-control">Purchase</a>
+    </div>
+    <div class="purchase-button mb-4 px-2">
+        <a asp-controller="Home" asp-action="Index" type="button" class="btn btn-secondary form-control">Go Back</a>
     </div>
 </div>

@@ -103,10 +103,6 @@ a {
     margin-bottom: 20px;
 }
 
-.purchase-button {
-    text-align: center;
-}
-
 .details-container {
     display: flex;
     justify-content: space-between;
