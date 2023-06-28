@@ -1,0 +1,70 @@
+@model VAGnificent.Models.Models.Disposal
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Details</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .car-photo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .car-details {
+      margin-bottom: 20px;
+    }
+
+    .technical-details {
+      margin-bottom: 20px;
+    }
+
+    .purchase-button {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container card-body p-4">
+        <div class="car-photo">
+            <img src="@Model.ImageUrl" alt="Car Photo" width="400" height="300">
+            <h1>@Model.Brand.BrandName</h1>
+        </div>
+        <div class="car-details">
+            <h2>Car Details</h2>
+            <ul>
+                <li>Model: @Model.Model</li>
+                <li>Year: @Model.Year</li>
+                <li>Colour: @Model.Colour</li>
+                <li>Price: @Model.DollarsPrice$</li>
+            </ul>
+        </div>
+        <div class="technical-details">
+            <h2>Technical Details</h2>
+            <ul>
+                <li>Horsepower: @Model.HorsePower</li>
+                <li>Weight: @Model.Weight</li>
+                <li>Engine capacity: @Model.EngineCapacity</li>
+                <li>Fuel type: @Model.FuelType</li>
+                <li>Transmition type: @Model.TransmisionType</li>
+                <li>Travelled distance: @Model.TravelledDistance</li>
+            </ul>
+        </div>
+        <div class="purchase-button">
+            <button type="button" class="btn btn-primary">Purchase</button>
+        </div>
+    </div>
+</body>
+</html>
