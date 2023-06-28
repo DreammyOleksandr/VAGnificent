@@ -1,50 +1,14 @@
 @model VAGnificent.Models.Models.Disposal
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Car Details</title>
-    <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-    }
-
-    .car-photo {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .car-details {
-      margin-bottom: 20px;
-    }
-
-    .technical-details {
-      margin-bottom: 20px;
-    }
-
-    .purchase-button {
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-<div class="container card-body p-4">
-        <div class="car-photo">
-            <img src="@Model.ImageUrl" alt="Car Photo" width="400" height="300">
-            <h1>@Model.Brand.BrandName</h1>
-        </div>
-        <div class="car-details">
+<div class="card shadow border-0 mt-4">
+    <div class="car-photo mt-4">
+        <img src="@Model.ImageUrl" alt="Car Photo" width="400" height="300">
+        <h1>@Model.Brand.BrandName</h1>
+    </div>
+    <div class="details-container px-5">
+        <div class="details">
             <h2>Car Details</h2>
-            <ul>
+            <ul style="list-style: none">
                 <li>Model: @Model.Model</li>
                 <li>Year: @Model.Year</li>
                 <li>Colour: @Model.Colour</li>
@@ -53,7 +17,7 @@
         </div>
         <div class="technical-details">
             <h2>Technical Details</h2>
-            <ul>
+            <ul style="list-style: none">
                 <li>Horsepower: @Model.HorsePower</li>
                 <li>Weight: @Model.Weight</li>
                 <li>Engine capacity: @Model.EngineCapacity</li>
@@ -62,9 +26,8 @@
                 <li>Travelled distance: @Model.TravelledDistance</li>
             </ul>
         </div>
-        <div class="purchase-button">
-            <button type="button" class="btn btn-primary">Purchase</button>
-        </div>
     </div>
-</body>
-</html>
+    <div class="purchase-button mb-4">
+        <button type="button" class="btn btn-primary">Purchase</button>
+    </div>
+</div>

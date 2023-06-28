@@ -22,6 +22,7 @@ body {
     font-family: 'Trebuchet MS', sans-serif;
     background: #f1f1f1;
 }
+
 a {
     text-decoration: none;
 }
@@ -89,6 +90,42 @@ a {
 }
 
 
+.car-photo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.car-details {
+    margin-bottom: 20px;
+}
+
+.technical-details {
+    margin-bottom: 20px;
+}
+
+.purchase-button {
+    text-align: center;
+}
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.technical-details {
+    width: 48%;
+}
+
+.details {
+    width: 48%;
+}
+
+.details h2 {
+    margin-top: 0;
+}
+
+
 @-webkit-keyframes pulse {
     0% {
         -moz-transform: scale(0.9);
@@ -112,4 +149,5 @@ a {
         transform: scale(0.9);
         box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
     }
+
 }
