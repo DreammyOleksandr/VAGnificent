@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="purchase-button mb-4 px-2">
-        <a type="button" class="btn btn-primary form-control">Purchase</a>
+        <a type="button" asp-route-id="@Model.Id" asp-area="Customer" asp-controller="Order" asp-action="CheckOut" class="btn btn-primary form-control">Purchase</a>
     </div>
     <div class="purchase-button mb-4 px-2">
         <a asp-controller="Home" asp-action="Index" type="button" class="btn btn-secondary form-control">Go Back</a>
