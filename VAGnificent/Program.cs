@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol.Core.Types;
 using VAGnificent.DataAccess;
 using VAGnificent.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +15,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<App
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 builder.Services.AddScoped<IDisposalRepository, DisposalRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
 
