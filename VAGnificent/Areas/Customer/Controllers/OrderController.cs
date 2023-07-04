@@ -13,11 +13,30 @@ public class OrderController : Controller
     {
         _orderRepository = orderRepository;
     }
-    
-    
+
+
     public IActionResult CheckOut(int? id)
     {
         var order = _orderRepository.Get(_ => _.Id == id);
         return View(order);
+    }
+
+
+    [HttpPost]
+    public IActionResult CheckOut(Order order)
+    {
+        if (ModelState.IsValid)
+        {
+            _orderRepository.Add(order);
+            _orderRepository.Save();
+            return RedirectToAction(nameof(CheckoutComplete));
+        }
+        else
+            return View(order);
+    }
+
+    public IActionResult CheckoutComplete()
+    {
+        return View();
     }
 }
