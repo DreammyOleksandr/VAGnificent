@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using VAGnificent.DataAccess.Repository.IRepository;
 using VAGnificent.Models.Models;
-using VAGnificent.Models.ViewModels;
 
 namespace VAGnificent.Areas.Customer.Controllers;
 
