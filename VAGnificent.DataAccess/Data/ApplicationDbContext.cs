@@ -19,4 +19,5 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Disposal> Disposals { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
+    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 }
